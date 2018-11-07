@@ -19,4 +19,14 @@ request GET : "https://api.github.com/repos/facebook/react/stats/contributors".
 After using the Github API and understanding how it worked, I decided to use this library to fetch stats per user. 
 All the informations are in users_stats.py. 
 
+### Topk information on users 
+
+There are 3 functions that return a list of top k users  : 
+
+- topk_followed
+- topk_contributions
+- topk_repos_owner 
+
+You can decide how many users you want in the top K.
+
 

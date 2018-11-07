@@ -15,11 +15,6 @@ dates = []
 res_all = []
 token = cred.token
 
-# Get the list of all commits per contributors
-r_contributors = requests.get('https://api.github.com/repos/facebook/react/stats/contributors',
-                              auth=('token', token))
-data_contributors = json.loads(r_contributors.content)
-
 # Columns
 keys = [
     "author",
@@ -52,6 +47,17 @@ columns = [
     "d",
     "c",
 ]
+
+# ---------------------------------------------------
+# Request stats to Github API
+# ---------------------------------------------------
+
+# Get the list of all commits and actions per contributors
+# ---------------------------------------------------
+
+r_contributors = requests.get('https://api.github.com/repos/facebook/react/stats/contributors',
+                              auth=('token', token))
+data_contributors = json.loads(r_contributors.content)
 
 # ---------------------------------------------------
 # Data formatting
@@ -125,3 +131,37 @@ contributors_list = []
 for contributor in contributors:
     contributors_list.append(contributor)
 
+# Topk contributions
+# -> k = Top k
+# ---------------------------------------------------
+
+topk_contrib = us.topk_contributions(stats_users)
+print("--------------------")
+print("----TOP K CONTRIB---")
+print("--------------------")
+print(topk_contrib)
+
+# Topk followed
+# -> k = Top k
+# ---------------------------------------------------
+
+topk_followed = us.topk_followed(stats_users)
+print("---------------------")
+print("----TOP K FOLLOWED---")
+print("---------------------")
+print(topk_followed)
+
+# Topk repos owner
+# -> k = Top k
+# ---------------------------------------------------
+topk_owner = us.topk_repos_owner(stats_users)
+print("---------------------")
+print("-----TOP K OWNER-----")
+print("---------------------")
+print(topk_owner)
+
+# Contributions per contributors
+# -> Type = 'loglog' or 'hist
+# ---------------------------------------------------
+
+us.display_repart_total_contrib(stats_users)
