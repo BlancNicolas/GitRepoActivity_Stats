@@ -6,16 +6,18 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import user_stats as us
 from github import Github
+import cred
 
 nb_of_pages = range(1, 210)
 item_per_pages = 100
 events = []
 dates = []
 res_all = []
+token = cred.token
 
 # Get the list of all commits per contributors
 r_contributors = requests.get('https://api.github.com/repos/facebook/react/stats/contributors',
-                              auth=('token', '5953e738ca9bfa101c5959887e9aff6adf28d21e'))
+                              auth=('token', token))
 data_contributors = json.loads(r_contributors.content)
 
 # Columns
