@@ -113,7 +113,7 @@ plt.show()
 # ---------------------------------------------------
 
 
-g = Github("5953e738ca9bfa101c5959887e9aff6adf28d21e")
+g = Github(token)
 repo = g.get_repo("facebook/react")
 stats_contributors = repo.get_stats_contributors()
 
